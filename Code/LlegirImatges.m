@@ -32,5 +32,7 @@ for index = 1 : 10
     hold on
     plot([eyes(index,1)], [eyes(index,2)], 'r.');
     plot([eyes(index,3)], [eyes(index,4)], 'r.');
+    rectangle('Position',[eyes(index,1)-20,eyes(index,2)-10,40,20])
+    rectangle('Position',[eyes(index,3)-20,eyes(index,4)-10,40,20])
     hold off
 end   
