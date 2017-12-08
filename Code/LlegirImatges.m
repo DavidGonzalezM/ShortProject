@@ -1,15 +1,16 @@
 % script per llegir les imatges d'un carpeta
-imf = dir('.\AllImages\*.pgm'); % llista d'imatges amb extensio pgm
+imf = dir('..\..\Dataset\*.pgm'); % llista d'imatges amb extensio pgm
 n = length(imf); % nombre d'imatges en el directori
 images = zeros([n,400,400]); % array n imatges de mida 400 x 400
 eyes = zeros([n,4]);
+
 for i = 1 : 10
      name = imf(i).name;
      nameEye = strrep(name,'pgm','eye');
-     im = imread(strcat('.\AllImages\', name));
+     im = imread(strcat('..\..\Dataset\', name));
      images(i,:,:) = imresize(im,[400 400]);
      
-     fileID = fopen(strcat('.\AllImages\', nameEye));
+     fileID = fopen(strcat('..\..\Dataset\', nameEye));
      fgetl(fileID);
      imEye=strsplit(fgetl(fileID));
      fclose(fileID);
@@ -22,6 +23,7 @@ for i = 1 : 10
      eyes(i,3) = eyes(i,3) * diffx;
      eyes(i,4) = eyes(i,4) * diffy;
 end
+
 % mostrem les imatges
 for index = 1 : 10
     figure
