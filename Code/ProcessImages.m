@@ -19,14 +19,21 @@ for i = 1 : 10
          imEye=strsplit(fgetl(fileID));
          fclose(fileID);
          eyes = cellfun(@str2num, imEye);
-         eyes(1) = eyes(1) * diffx;
-         eyes(2) = eyes(2) * diffy;
-         eyes(3) = eyes(3) * diffx;
-         eyes(4) = eyes(4) * diffy;
+         eyes(1) = round(eyes(1) * diffx);
+         eyes(2) = round(eyes(2) * diffy);
+         eyes(3) = round(eyes(3) * diffx);
+         eyes(4) = round(eyes(4) * diffy);
          eye1 = im((eyes(2)-10):(eyes(2)+10),(eyes(1)-20):(eyes(1)+20));
          eye2 = im((eyes(4)-10):(eyes(4)+10),(eyes(3)-20):(eyes(3)+20));
-         imwrite(eye1,strcat('..\..\Train\',nameEye,'EYE1.png'));
-         imwrite(eye2,strcat('..\..\Train\',nameEye,'EYE2.png'));
+         imwrite(eye1,strcat('..\..\Train\EYE1_',nameEye,'.png'));
+         imwrite(eye2,strcat('..\..\Train\EYE2_',nameEye,'.png'));
+         noeyes = generateNoEyes(eyes);
+         count = 1;
+         for j = 1:2:36
+             noeye = im((noeyes(j+1)-10):(noeyes(j+1)+10),(noeyes(j)-20):(noeyes(j)+20));
+             imwrite(noeye,strcat('..\..\Train\NOEYE',int2str(count),'_',nameEye,'.png'));
+             count = count + 1;
+         end
      else           % 30% de les imatges son de Test
          % Guardar imatge en Test
          imwrite(im,strcat('..\..\Test\',name,'.png'))
