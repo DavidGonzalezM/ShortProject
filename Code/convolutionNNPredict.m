@@ -1,16 +1,17 @@
-I = imread('BioID_0187.pgm.png');
+I = imread('BioID_0240.pgm.png');
 figure
 imshow(I);
 hold on
 cont = 1;
 [n m] = size(I)
 for i = 1 : 3 : n - 20
+    i
     for j = 1 : 3 : n - 40
         subimage = I(i:i+20, j:j+40);
         %imshow(subimage);
         P = predict(net,subimage);
         %P(1) es EYE en mi caso. Podría cambiar según modelo entrenado
-        if (P(1) > 0.70)
+        if (P(1) > 0.50)
             eye.prob = P(1);
             eye.j = j;
             eye.i = i;
