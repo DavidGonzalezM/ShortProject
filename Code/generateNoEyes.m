@@ -1,22 +1,22 @@
 function [ noeyes ] = generateNoEyes( eyes )
 % Given the coords of 2 eyes, generate the coords of 18 no-eyes
-    x1 = eyes(1)-20;
-    x2 = eyes(1)+20;
-    x3 = eyes(3)-20;
-    x4 = eyes(3)+20;
-    y1 = eyes(2)-10;
-    y2 = eyes(2)+10;
-    y3 = eyes(4)-10;
-    y4 = eyes(4)+10;
+    x1 = eyes(1)-10;
+    x2 = eyes(1)+10;
+    x3 = eyes(3)-10;
+    x4 = eyes(3)+10;
+    y1 = eyes(2)-5;
+    y2 = eyes(2)+5;
+    y3 = eyes(4)-5;
+    y4 = eyes(4)+5;
     noeyes = zeros(1,36);
     for i=1:2:36
         condition = false;
         x = 0;
         y = 0;
         while ~condition
-            x = round(rand * 400);
-            y = round(rand * 400);
-             if x>20 && x<380 && y>10 && y<390
+            x = round(rand * 200);
+            y = round(rand * 200);
+             if x>10 && x<190 && y>5 && y<195
                  condition = true;
              end
             if x>x1 && x<x2 && y>y1 && y<y2
