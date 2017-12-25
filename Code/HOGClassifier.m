@@ -3,7 +3,7 @@ trainingSet = imageDatastore(path,   'IncludeSubfolders', true, 'LabelSource', '
 
 numImages = numel(trainingSet.Files);
 
-cellSize = [1 1]; % Este parametro se debe ajustar para probar distintos resultados
+cellSize = [2 2]; % Este parametro se debe ajustar para probar distintos resultados
 
 img = readimage(trainingSet, 1);
 [a,b] = extractHOGFeatures(img, 'CellSize', cellSize);
