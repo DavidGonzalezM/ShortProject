@@ -1,9 +1,10 @@
+clear;
 path = 'C:\Users\ruben.ajenjo\Desktop\ImagenesShortProject\Train';
 trainingSet = imageDatastore(path,   'IncludeSubfolders', true, 'LabelSource', 'foldernames');
 
 numImages = numel(trainingSet.Files);
 
-cellSize = [2 2]; % Este parametro se debe ajustar para probar distintos resultados
+cellSize = [1 1]; % Este parametro se debe ajustar para probar distintos resultados
 
 img = readimage(trainingSet, 1);
 [a,b] = extractHOGFeatures(img, 'CellSize', cellSize);
