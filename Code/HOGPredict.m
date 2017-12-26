@@ -4,7 +4,7 @@ imshow(I);
 hold on
 cont = 1;
 [n m] = size(I);
-cellSize = [1 1];
+cellSize = [1 1]; % tiene que ser igual que el entrenamiento
 for i = 60 : 1 : n - 200
     i
     for j = 100 : 1 : n - 100
