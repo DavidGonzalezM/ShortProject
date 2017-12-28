@@ -39,7 +39,7 @@ for i = 1 : n
     name = imf(i).name;
     im = imread(strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyes\', name));
     imshow(im);
-    button = questdlg('Mira a càmara?');
+    button = questdlg('Mira a càmera?');
     if strcmp(button,'Yes')
         imwrite(im,strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyesClassified\Miran\',name));
     else if strcmp(button,'No')
@@ -62,5 +62,23 @@ for i = 1:n
         imwrite(im,strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyesClassified\Miran\',name));
     else
         imwrite(im,strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyesClassified\NoMiran\',name));
+    end
+end
+
+
+% Separació en Train i Test
+imf = dir('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyes\*.png');
+n = length(Majoria);
+for i = 1:n
+    name = imf(i).name;
+    im = imread(strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyes\', name));
+    if rand < 0.7  
+        if Majoria(i)
+            imwrite(im,strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\SecondTrain\Miran\',name));
+        else
+            imwrite(im,strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\SecondTrain\NoMiran\',name));
+        end
+    else
+        imwrite(im,strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\SecondTest\',name));
     end
 end
