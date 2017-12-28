@@ -53,3 +53,14 @@ end
 
 
 % Classificació automàtica amb el Excel proporcionat al Racó
+imf = dir('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyes\*.png');
+n = length(Majoria);
+for i = 1:n
+    name = imf(i).name;
+    im = imread(strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyes\', name));
+    if Majoria(i)
+        imwrite(im,strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyesClassified\Miran\',name));
+    else
+        imwrite(im,strcat('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\AllEyesClassified\NoMiran\',name));
+    end
+end
