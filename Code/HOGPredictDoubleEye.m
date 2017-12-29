@@ -1,12 +1,17 @@
-I = imread('BioID_1454.pgm.png');
+%I = imread('BioID_1454.pgm.png');
+%I = imread('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\DoubleTest\BioID_0712.pgm.png');
+I = imread('C:\Users\David\Desktop\Universidad\Quatrimestre7\VC\lab\ShortProject\github\ExtraTest\WonderW.jpg');
+I = rgb2gray(I);
+
 figure
 imshow(I);
 hold on
 cont = 1;
 [n m] = size(I);
 cellSize = [1 2];  % tiene que ser igual que el entrenamiento
+result = zeros(1,2);
+maxscore = 0;
 for i = 60 : 2 : n - 200
-    i
     for j = 100 : 2 : n - 200
         subimage = I(i:i+30, j:j+120);
         subimage = imresize(subimage, [31 110]);
@@ -14,20 +19,24 @@ for i = 60 : 2 : n - 200
         predFeatures = extractHOGFeatures(subimage, 'CellSize', cellSize);
         [label score] = predict(classifier, predFeatures);
         sc = abs(score(2));
-        if (label ~= 'NoEye')% & sc > 0.5)
-            eye.prob = sc;
-            eye.j = j;
-            eye.i = i;
-            EYES(cont) = eye;
-            cont = cont + 1;
-            rectangle('Position',[j,i,130,31],...
-                    'Curvature',[0.8,0.4],...
-                    'EdgeColor', 'r',...
-                    'LineWidth', 1,...
-                    'LineStyle','-')
+        if (label ~= 'NoEye' & sc > maxscore)
+            result(1) = i;
+            result(2) = j;
+            maxscore = sc;
         end
     end
 end
+
+eye.prob = maxscore;
+eye.j = result(2);
+eye.i = result(1);
+EYES(cont) = eye;
+rectangle('Position',[result(2),result(1),130,31],...
+        'Curvature',[0.8,0.4],...
+        'EdgeColor', 'r',...
+        'LineWidth', 1,...
+        'LineStyle','-')
+
 % firstEye = [0 0];
 % secondEye = [0 0];
 % [n m] = size(EYES);
